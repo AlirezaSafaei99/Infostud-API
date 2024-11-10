@@ -1,0 +1,7 @@
+fastapi==0.78.0
+sqlalchemy==1.4.0
+pydantic==1.9.0
+psycopg2-binary==2.9.3
+requests==2.27.1
+selenium==4.26.1
+yagmail==0.14.0
