@@ -11,9 +11,10 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
-    info_users = Column(String(100))
-    info_password = Column(String(100))
+    info_user = Column(String(100), nullable=False)
+    pass_user = Column(String(100), nullable=False)
 
 
 # do not use the table name directly instead implement a method to get it 
 # also for table args 
+

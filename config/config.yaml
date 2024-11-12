@@ -1,0 +1,2 @@
+database:
+  APP_DB_DNS: "postgresql+asyncpg://postgres:Test1234@localhost:6543/test"
