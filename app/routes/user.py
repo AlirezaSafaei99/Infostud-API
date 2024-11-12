@@ -40,14 +40,14 @@ async def api_get_user_by_id(user_id: int, db: AsyncSession = Depends(get_db)):
     logger.info("User fetched successfully: %s", user)
     return user
 
-@app.get("/users/", response_model=list[UserBase], summary="Get all users", description="Fetches all users from the database.")
+@app.get("/users", response_model=list[UserBase], summary="Get all users", description="Fetches all users from the database.")
 async def api_get_users(db: AsyncSession = Depends(get_db)):
     logger.info("Fetching all users")
     users = await get_users(db)
     logger.info("Users fetched successfully: %d users", len(users))
     return users
 
-@app.put("/users/{user_id}", response_model=UserBase, summary="Update a user", description="Updates user details by their ID.")
+@app.put("/users/:user_id", response_model=UserBase, summary="Update a user", description="Updates user details by their ID.")
 async def api_update_user(user_id: int, updated_data: dict, db: AsyncSession = Depends(get_db)):
     logger.info("Updating user with ID %d using data: %s", user_id, updated_data)
     user = await update_user(db, user_id, updated_data)
@@ -57,7 +57,7 @@ async def api_update_user(user_id: int, updated_data: dict, db: AsyncSession = D
     logger.info("User updated successfully: %s", user)
     return user
 
-@app.delete("/users/{user_id}", response_model=UserBase, summary="Delete a user", description="Deletes a user by their ID.")
+@app.delete("/delete-users/{user_id}", response_model=UserBase, summary="Delete a user", description="Deletes a user by their ID.")
 async def api_delete_user(user_id: int, db: AsyncSession = Depends(get_db)):
     logger.info("Deleting user with ID: %d", user_id)
     user = await delete_user(db, user_id)
