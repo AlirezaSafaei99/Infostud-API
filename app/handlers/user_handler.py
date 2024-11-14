@@ -11,7 +11,7 @@ async def create_user(db: AsyncSession, user_data):
 
 async def get_user_by_id(db: AsyncSession, user_id: int):
     result = await db.execute(select(User).filter(User.id == user_id))
-    return result.scalar_one_or_none()
+    return result.scalars().first()
 
 async def get_users(db: AsyncSession):
     result = await db.execute(select(User))
@@ -19,7 +19,7 @@ async def get_users(db: AsyncSession):
 
 async def update_user(db: AsyncSession, user_id: int, updated_data):
     result = await db.execute(select(User).filter(User.id == user_id))
-    user = result.scalar_one_or_none()
+    user = result.scalars().first()
     if user:
         for key, value in updated_data.items():
             setattr(user, key, value)
@@ -29,7 +29,7 @@ async def update_user(db: AsyncSession, user_id: int, updated_data):
 
 async def delete_user(db: AsyncSession, user_id: int):
     result = await db.execute(select(User).filter(User.id == user_id))
-    user = result.scalar_one_or_none()
+    user = result.scalars().first()
     if user:
         await db.delete(user)
         await db.commit()

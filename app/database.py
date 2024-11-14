@@ -1,3 +1,4 @@
+# THIS FILE IS RESPONSIBLE TO GET CONNECTED TO THE DB SO  WE WILL HAVE THE AUTHORIZATION TO MODIFY STUFF ON DB.
 from config.config import load_config
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
