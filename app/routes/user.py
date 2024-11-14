@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)  # Logs INFO level and above
 
 # Dependency that provides the database session
-async def get_db() -> AsyncSession:
+async def get_db() -> AsyncSession: # type: ignore
     logger.info("Getting database session")
     async with init_db()() as session:  # This returns a session object
         yield session
