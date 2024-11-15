@@ -9,6 +9,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.models import User
+from app.database import init_db
 import os
 import requests
 
@@ -20,7 +23,18 @@ def initialize_driver():
     driver = webdriver.Chrome(options=options)
     return driver
 
-async def download_enrollment_file(username, password):
+async def get_user_credentials(user_id: int):
+    async_session = init_db
+    async with async_session as session:
+        user = await session.get(User, user_id)
+        if user:
+            return user.email, user.pass_user
+        else:
+            raise Exception("User not found in the DB")
+
+async def download_enrollment_file(user_id: int):
+    username, password = await get_user_credentials(user_id)
+
     driver = initialize_driver()
     wait =  WebDriverWait(driver, 10)
 
