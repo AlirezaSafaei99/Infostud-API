@@ -66,7 +66,3 @@ async def api_delete_user(user_id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     logger.info("User deleted successfully: %s", user)
     return user
-
-
-app = FastAPI(swagger_ui_parameters={"syntaxHighlight.theme": "obsidian"})
-app.include_router(router)
