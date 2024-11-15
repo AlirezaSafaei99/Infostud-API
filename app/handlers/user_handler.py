@@ -1,3 +1,8 @@
+# user_handler.py
+# This file contains the core logic for handling user operations in the database.
+# It defines functions for creating, retrieving, updating, and deleting user records in an asynchronous manner.
+# These functions interact with the database via SQLAlchemy and are called by the API routes.
+
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.models import User

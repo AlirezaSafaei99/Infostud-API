@@ -1,3 +1,8 @@
+# scheduler.py
+# This file sets up and manages background scheduled tasks.
+# It uses the APScheduler library to schedule tasks such as the daily web scraping and email sending job.
+# The scheduler is started on application startup, ensuring background jobs run as specified.
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from app.handlers.user_handler import get_user_by_id
 from app.utils.scraper import download_enrollment_file

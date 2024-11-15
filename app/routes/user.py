@@ -1,3 +1,8 @@
+# user.py
+# This file defines the API endpoints (routes) for user-related operations.
+# It includes routes for creating, retrieving, updating, and deleting user data.
+# All routes in this file are managed under an APIRouter instance for modularity and ease of inclusion in the main app.
+
 import logging
 from fastapi import APIRouter, Depends, HTTPException, FastAPI
 from sqlalchemy.ext.asyncio import AsyncSession

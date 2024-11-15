@@ -1,2 +1,7 @@
+# config.yaml
+# This YAML file contains configuration settings for the application.
+# Here, database connection details are specified, including database URL, username, and password.
+# These settings are loaded by config.py and used for establishing a database connection.
+
 database:
   APP_DB_DNS: "postgresql+asyncpg://postgres:Test1234@localhost:6543/test"

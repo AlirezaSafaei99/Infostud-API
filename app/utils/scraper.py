@@ -1,3 +1,8 @@
+# scraper.py
+# This file contains functions for web scraping using Selenium.
+# It defines functions to log in to the university website, download enrollment files, and save them.
+# The scraper is scheduled to run daily and authenticate using user credentials stored in the database.
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys

@@ -1,4 +1,8 @@
-# Database models (User model)
+# models.py
+# This file defines the SQLAlchemy ORM models for the database.
+# Each model represents a table in the database. Here, the User model defines the structure and schema for the "user" table.
+# These models are used to perform CRUD operations in the database.
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 

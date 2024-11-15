@@ -1,3 +1,8 @@
+# emailer.py
+# This file contains functions for sending automated emails with attachments.
+# It uses yagmail to send emails with attached enrollment files and handles errors in email delivery.
+# This utility is called by the scheduler after downloading a file to send it to the user.
+
 import yagmail
 import datetime
 

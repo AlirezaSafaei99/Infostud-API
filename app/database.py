@@ -1,4 +1,8 @@
-# THIS FILE IS RESPONSIBLE TO GET CONNECTED TO THE DB SO  WE WILL HAVE THE AUTHORIZATION TO MODIFY STUFF ON DB.
+# database.py
+# This file is responsible for setting up and managing the database connection.
+# It initializes an asynchronous SQLAlchemy database engine and provides an async session factory.
+# The session factory is used to create session instances that manage transactions and queries with the database.
+
 from config.config import load_config
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
