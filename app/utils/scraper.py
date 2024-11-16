@@ -10,10 +10,15 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
 from app.models import User
 from app.database import init_db
+from config.config import load_config
 import os
 import requests
+
+config = load_config()
+urls = config["urls"]
 
 def initialize_driver():
     options = Options()
@@ -26,11 +31,13 @@ def initialize_driver():
 async def get_user_credentials(user_id: int):
     async_session = init_db
     async with async_session as session:
-        user = await session.get(User, user_id)
+        query = select(User).where(User.id == user_id)
+        result = await session.execute(query)
+        user = result.scalars().first()
         if user:
-            return user.email, user.pass_user
+            return user.info_user, user.pass_user
         else:
-            raise Exception("User not found in the DB")
+            raise Exception(f"User with ID {user_id} not found.")
 
 async def download_enrollment_file(user_id: int):
     username, password = await get_user_credentials(user_id)
@@ -40,7 +47,7 @@ async def download_enrollment_file(user_id: int):
 
     try:
         # Go to the login page
-        driver.get("https://idp.uniroma1.it/idp/profile/SAML2/Redirect/SSO?execution=e1s2")
+        driver.get(urls["homepage"])
 
         # Log into the user account
         username_field = wait.until(EC.presence_of_element_located((By.ID, "username")))

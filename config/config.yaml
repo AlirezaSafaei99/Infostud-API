@@ -5,3 +5,10 @@
 
 database:
   APP_DB_DNS: "postgresql+asyncpg://postgres:Test1234@localhost:6543/test"
+
+urls:
+  homepage: "https://www.uniroma1.it/it/pagina-strutturale/studenti"
+  login_page: "https://idp.uniroma1.it/idp/profile/SAML2/Redirect/SSO?execution=e3s1"
+  dashboard: "https://www.studenti.uniroma1.it/phoenix/index.html#/"
+  courses_page: "https://www.studenti.uniroma1.it/phoenix/index.html#/corsiLaurea"
+  certificates_page: "https://www.studenti.uniroma1.it/phoenix/index.html#/corsiLaurea/certificati"
