@@ -28,9 +28,7 @@ class EnrollmentFile(Base):
     file_path = Column(String(255), nullable=False)
     pdf_data = Column(LargeBinary, nullable=False)
     uploaded_at = Column(String(50), nullable=False) # Change the type to time
-    user = relationship("User", back_populates="enrollment_files")
 
-User.enrollment_files = relationship("EnrollmentFile", back_populates="user")
 # do not use the table name directly instead implement a method to get it 
 # also for table args 
 
