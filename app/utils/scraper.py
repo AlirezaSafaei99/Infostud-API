@@ -114,7 +114,7 @@ async def download_enrollment_file(user_id: int):
         if not os.path.exists("downloads"):
             os.makedirs("downloads")
 
-        await save_pdf_to_db(user_id, pdf_path)
+        await save_pdf_to_db(user.id, pdf_path)
         return pdf_path
 
     except Exception as e:
