@@ -5,6 +5,7 @@
 
 from pydantic import BaseModel
 from typing import Optional
+import datetime
 
 class UserBase(BaseModel):
     id : int
@@ -14,4 +15,21 @@ class UserBase(BaseModel):
     pass_user: str
 
     class Config:
-        orm_mode = True 
+        orm_mode = True
+
+class EnrollmentFileBase(BaseModel):
+    id: int
+    user_id: int
+    file_path: Optional[str]
+    uploaded_at: datetime
+
+    class Config:
+        orm_mode = True
+
+class EnrollmentFileCreate(BaseModel):
+    user_id: int
+    file_path: Optional[str] = None
+    pdf_data: bytes
+
+class EnrollmentFileResponse(EnrollmentFileBase):
+    pdf_data: Optional[bytes]

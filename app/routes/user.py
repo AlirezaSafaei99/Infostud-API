@@ -90,5 +90,5 @@ async def scrape_enrollment_file(user_id: int, db: AsyncSession = Depends(get_db
             return {"message": "Enrollment file downloaded successfully", "file_path": file_path}
         else:
             raise HTTPException(status_code=500, detail="Failed to download enrollment file")
-    except:
-        raise HTTPException(status_code=500, detail=f"An error occured: {str(e)}") # type: ignore
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occured: {str(e)}")
