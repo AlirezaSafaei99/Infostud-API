@@ -1,1 +1,0 @@
-# Certificate download & email script

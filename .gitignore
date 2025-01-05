@@ -1,0 +1,48 @@
+# Python-specific ignores
+__pycache__/                # Ignore Python bytecode
+*.py[cod]                   # Ignore compiled Python files
+*.pyo                        # Ignore optimized Python files
+*.pyd                        # Ignore Python dynamic libraries
+.Python                      # Ignore Python virtual environment directory
+
+# Virtual environment directory
+venv/                        # Ignore virtual environment folder (if you use one)
+env/                         # Sometimes named 'env' for virtualenv
+
+# Docker-related ignores
+.docker/                     # Docker-related files (if you have build artifacts)
+*.dockerfile                 # Dockerfile could be included or excluded depending on your needs
+docker-compose.override.yml  # Ignore docker-compose override (if used)
+
+# IDE and editor files
+.vscode/                     # VSCode settings and workspace
+.idea/                       # JetBrains IDE settings
+*.sublime-workspace          # Sublime Text workspace settings
+
+# Operating system files
+.DS_Store                    # macOS system files
+Thumbs.db                    # Windows system files
+
+# Log files
+*.log                        # Ignore log files
+*.csv                        # Ignore CSV logs if used
+*.sqlite3                    # SQLite database files (if used)
+
+# Test coverage or testing-specific files
+.coverage                    # Coverage file from testing
+nosetests.xml                # Output from the nosetests tool
+*.hypothesis/                # Ignore Hypothesis testing directory
+*.tox/                       # Ignore tox test directory
+*.nox/                       # Ignore nox test directory
+
+# Local environment variables (be careful with sensitive data)
+.env                         # Environment variables file, could contain secrets
+*.env                        # Any environment file
+
+# PostgreSQL and database files
+pgdata/                      # PostgreSQL data directory (if applicable, change path if different)
+
+# Temporary files
+*.swp                        # Vim swap files
+*.swo                        # Vim swap files
+*.bak                        # Backup files
