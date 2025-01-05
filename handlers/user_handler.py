@@ -5,7 +5,7 @@
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from app.models import User
+from utils.models import User
 
 async def create_user(db: AsyncSession, user_data):
     user = User(**user_data)

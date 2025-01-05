@@ -4,26 +4,23 @@
 # All routes in this file are managed under an APIRouter instance for modularity and ease of inclusion in the main app.
 
 import logging
-from fastapi import APIRouter, Depends, HTTPException, FastAPI
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.schemas import UserBase
-from app.handlers.user_handler import create_user, get_user_by_id, get_users, update_user, delete_user
-from app.database import init_db
-from app.utils.scraper import download_enrollment_file
-from app.handlers.user_handler import get_user_by_id
+from utils.schemas import UserBase
+from handlers.user_handler import create_user, get_user_by_id, get_users, update_user, delete_user
+from utils.database import init_db
+from handlers.user_handler import get_user_by_id
 
-# Set up logging
+router = APIRouter()
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)  # Logs INFO level and above
+logging.basicConfig(level=logging.INFO)  
 
-# Dependency that provides the database session
-async def get_db() -> AsyncSession: # type: ignore
+async def get_db() -> AsyncSession: 
     logger.info("Getting database session")
-    async with init_db()() as session:  # This returns a session object
+    async with init_db()() as session:  
         yield session
     logger.info("Database session closed")
 
-router = APIRouter()
 
 @router.get("/ping")
 def read_root():
@@ -73,22 +70,3 @@ async def api_delete_user(user_id: int, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     logger.info("User deleted successfully: %s", user)
     return user
-
-@router.post("/scrape/{user_id}", summary="Scrape enrollment file for a user")
-async def scrape_enrollment_file(user_id: int, db: AsyncSession = Depends(get_db)):
-    """
-    Endpoint to trigger the web scraper for downloading a user's enrollment file.
-    """
-    user = await get_user_by_id(db, user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User nnot found")
-    
-    try:
-        file_path = await download_enrollment_file(user_id)
-
-        if file_path:
-            return {"message": "Enrollment file downloaded successfully", "file_path": file_path}
-        else:
-            raise HTTPException(status_code=500, detail="Failed to download enrollment file")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An error occured: {str(e)}")
