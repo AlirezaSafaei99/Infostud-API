@@ -3,13 +3,7 @@
 # It includes a PostgreSQL service with defined environment variables and persistent volume configuration.
 # Docker Compose orchestrates the services, making it easy to start up the entire environment with a single command.
 
-services:
-  # app:
-  #   build: .                
-  #   ports:
-  #     - "8000:8000"          
-  #   depends_on:
-  #     - postgres             
+services:           
   postgres:
     image: postgres:latest       
     environment:
